@@ -1,11 +1,11 @@
 import './App.css';
 import List from './components/List'
-import Tab from './components/AddingTab'
+import Tab from './components/Tab'
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello and Welcome!</h1>
+      <h1>A CAR STORE</h1>
 
       <Tab/>
       <List/>
