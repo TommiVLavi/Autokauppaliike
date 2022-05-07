@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-material.css'
 import Button from '@mui/material/Button';
+import Edit from './Edit'
 
 function Table(props) {
     
@@ -51,6 +52,7 @@ function Table(props) {
 
             <Button variant="outlined" onClick={onBtnExport}>EXPORT</Button>
             <Button variant='contained' onClick={deleteCar}>Delete</Button>
+            <Edit cars={props.cars}/>
         </div>
     )
 }

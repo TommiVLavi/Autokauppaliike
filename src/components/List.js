@@ -23,12 +23,24 @@ function List () {
         fetch('https://carstockrest.herokuapp.com/cars', {
             method: 'POST',
             headers: {
-                'Content-type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(car)
         })
         .then( resp => fetching())
         .catch(err => console.error(err))
+    }
+
+    const updateCar = (car, link) => {
+        fetch(link, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(car)
+        })
+        .then(resp => fetching())
+        .catch( err => console.error(err))
     }
 
     return (
