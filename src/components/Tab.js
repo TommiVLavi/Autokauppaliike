@@ -3,9 +3,9 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import Add from './Add'
 
-function tab (){
+function tab (props){
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -15,7 +15,7 @@ function tab (){
               The Storage
             </Typography>
 
-            <Button variant="contained">Contained</Button>
+            <Add saveCar={props.saveCar}/>
           </Toolbar>
         </AppBar>
       </Box>

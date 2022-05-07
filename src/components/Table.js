@@ -1,14 +1,11 @@
 import { AgGridReact } from 'ag-grid-react'
-import { useCallback, useRef } from 'react';
+import { useCallback } from 'react';
 import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-material.css'
 import Button from '@mui/material/Button';
 
 function Table(props) {
-    const gridRef = useRef();
     
-    
-
     const columns = [
         { field: "brand", sortable: true, filter: true },
         { field: "model", sortable: true, filter: true },
@@ -19,8 +16,13 @@ function Table(props) {
     ]
 
     const onBtnExport = useCallback(() => {
-        gridRef.current.api.exportDataAsCsv();
+        props.gridRef.current.api.exportDataAsCsv();
     }, []);
+
+    const deleteCar = () => {
+        props.setCars(props.cars.filter((car, index) => 
+            index !== props.gridRef.current.getSelectedNodes()[0].childIndex))
+    }
 
     const onGridReady = useCallback((params) => {
         params.api.sizeColumnsToFit();
@@ -30,7 +32,7 @@ function Table(props) {
             });
         });
 
-        gridRef.current.api.sizeColumnsToFit();
+        props.gridRef.current.api.sizeColumnsToFit();
     }, []);
 
     return (
@@ -41,14 +43,14 @@ function Table(props) {
                 columnDefs={columns}
                 rowData={props.cars}
                 animateRows={true}
-                ref={gridRef}
+                ref={props.gridRef}
                 rowSelection="multiple"
-                onGridReady={(onGridReady, params => gridRef.current = params.api)}
+                onGridReady={(onGridReady, params => props.gridRef.current = params.api)}
             >
             </AgGridReact>
 
             <Button variant="outlined" onClick={onBtnExport}>EXPORT</Button>
-            <Button variant="outlined" >Delete</Button>
+            <Button variant='contained' onClick={deleteCar}>Delete</Button>
         </div>
     )
 }
